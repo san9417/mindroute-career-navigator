@@ -2,9 +2,35 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Upload as UploadIcon, FileText, CheckCircle } from 'lucide-react';
+import { Upload as UploadIcon, FileText, CheckCircle, Brain } from 'lucide-react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Upload = () => {
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [analysisComplete, setAnalysisComplete] = useState(false);
+  const [predictedCareer, setPredictedCareer] = useState<string>('');
+  const navigate = useNavigate();
+
+  const handleFileUpload = async () => {
+    setIsAnalyzing(true);
+    
+    // Simulate AI analysis
+    setTimeout(() => {
+      const careers = ['technology', 'business', 'design', 'healthcare', 'management'];
+      const randomCareer = careers[Math.floor(Math.random() * careers.length)];
+      
+      setPredictedCareer(randomCareer);
+      localStorage.setItem('careerPrediction', randomCareer);
+      setIsAnalyzing(false);
+      setAnalysisComplete(true);
+    }, 3000);
+  };
+
+  const handleViewTemplates = () => {
+    navigate('/templates');
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -29,13 +55,42 @@ const Upload = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="border-2 border-dashed border-border rounded-lg p-8 text-center">
-                  <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Drag and drop your resume here, or click to browse
-                  </p>
-                  <Button variant="outline">Browse Files</Button>
-                </div>
+                {!analysisComplete ? (
+                  <div className="border-2 border-dashed border-border rounded-lg p-8 text-center">
+                    {isAnalyzing ? (
+                      <div>
+                        <Brain className="h-12 w-12 text-primary mx-auto mb-4 animate-pulse" />
+                        <p className="text-sm text-muted-foreground mb-4">
+                          AI is analyzing your resume...
+                        </p>
+                        <div className="w-full bg-muted rounded-full h-2 mb-4">
+                          <div className="bg-primary h-2 rounded-full animate-pulse w-3/4"></div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                        <p className="text-sm text-muted-foreground mb-4">
+                          Drag and drop your resume here, or click to browse
+                        </p>
+                        <Button variant="outline" onClick={handleFileUpload}>
+                          Browse Files
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="text-center p-8">
+                    <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
+                    <h3 className="text-lg font-semibold mb-2">Analysis Complete!</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Predicted career field: <strong className="capitalize">{predictedCareer}</strong>
+                    </p>
+                    <Button onClick={handleViewTemplates} className="w-full">
+                      View Recommended Templates
+                    </Button>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
