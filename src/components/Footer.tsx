@@ -1,4 +1,4 @@
-import { Brain, Mail, MapPin, Phone } from 'lucide-react';
+import { Brain } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -39,23 +39,15 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Resources */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4" />
-                <span className="text-primary-foreground/80">support@mindroute.ai</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" />
-                <span className="text-primary-foreground/80">+1 (555) 123-4567</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4" />
-                <span className="text-primary-foreground/80">San Francisco, CA</span>
-              </div>
-            </div>
+            <h3 className="text-lg font-semibold mb-4">Resources</h3>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">Documentation</a></li>
+              <li><a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">API Reference</a></li>
+              <li><a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">Blog</a></li>
+              <li><a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">Support</a></li>
+            </ul>
           </div>
         </div>
 

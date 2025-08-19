@@ -8,26 +8,26 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 220 13% 9%;
+    --foreground: 220 9% 94%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 13% 9%;
+    --card-foreground: 220 9% 94%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 13% 9%;
+    --popover-foreground: 220 9% 94%;
 
-    --primary: 243 75% 59%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 355 25% 95%;
 
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 6% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 220 9% 94%;
 
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 262 52% 47%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 355 25% 95%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -36,17 +36,21 @@ All colors MUST be HSL.
     --input: 240 6% 90%;
     --ring: 243 75% 59%;
 
-    /* MindRoute Custom Design Tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(243 75% 59%), hsl(262 52% 47%));
-    --gradient-secondary: linear-gradient(135deg, hsl(240 5% 96%), hsl(240 6% 90%));
-    --gradient-hero: linear-gradient(135deg, hsl(243 75% 59%) 0%, hsl(262 52% 47%) 50%, hsl(280 60% 55%) 100%);
+    /* Advanced Neon-Tech Design Tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(144 61% 56%));
+    --gradient-secondary: linear-gradient(135deg, hsl(262 83% 58%), hsl(346 77% 49%));
+    --gradient-accent: linear-gradient(135deg, hsl(47 96% 53%), hsl(12 76% 61%));
+    --gradient-dark: linear-gradient(135deg, hsl(220 13% 9%), hsl(240 3.7% 15.9%));
+    --gradient-neon: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(262 83% 58%) 50%, hsl(346 77% 49%) 100%);
     
-    --shadow-elegant: 0 4px 20px -2px hsl(243 75% 59% / 0.15);
-    --shadow-card: 0 2px 10px -2px hsl(240 4% 46% / 0.1);
-    --shadow-glow: 0 0 40px hsl(243 75% 59% / 0.2);
+    --shadow-neon: 0 0 20px hsl(142 76% 36% / 0.5), 0 0 40px hsl(142 76% 36% / 0.3);
+    --shadow-elegant: 0 25px 50px -12px hsl(142 76% 36% / 0.25);
+    --shadow-glow: 0 0 60px hsl(144 61% 56% / 0.4), inset 0 1px 0 hsl(142 76% 36% / 0.1);
+    --shadow-card: 0 8px 32px -8px hsl(220 13% 9% / 0.4);
     
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-glow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 
@@ -68,26 +72,26 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 144 61% 56%;
+    --primary-foreground: 240 10% 3.9%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 220 13% 91%;
+    --secondary-foreground: 240 10% 3.9%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 220 13% 91%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 346 77% 49%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
