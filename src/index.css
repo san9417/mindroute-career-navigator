@@ -8,49 +8,55 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 220 13% 9%;
-    --foreground: 220 9% 94%;
+    --background: 5 6% 4%;
+    --foreground: 210 20% 98%;
 
-    --card: 220 13% 9%;
-    --card-foreground: 220 9% 94%;
+    --card: 6 7% 6%;
+    --card-foreground: 210 20% 98%;
 
-    --popover: 220 13% 9%;
-    --popover-foreground: 220 9% 94%;
+    --popover: 6 7% 6%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: 142 76% 36%;
-    --primary-foreground: 355 25% 95%;
+    --primary: 271 81% 56%;
+    --primary-foreground: 210 20% 98%;
 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 220 9% 94%;
+    --secondary: 15 4% 15%;
+    --secondary-foreground: 210 20% 98%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 15 4% 15%;
+    --muted-foreground: 215 15% 65%;
 
-    --accent: 262 83% 58%;
-    --accent-foreground: 355 25% 95%;
+    --accent: 192 96% 54%;
+    --accent-foreground: 5 6% 4%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
 
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 243 75% 59%;
+    --border: 15 4% 18%;
+    --input: 15 4% 18%;
+    --ring: 271 81% 56%;
 
-    /* Advanced Neon-Tech Design Tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(144 61% 56%));
-    --gradient-secondary: linear-gradient(135deg, hsl(262 83% 58%), hsl(346 77% 49%));
-    --gradient-accent: linear-gradient(135deg, hsl(47 96% 53%), hsl(12 76% 61%));
-    --gradient-dark: linear-gradient(135deg, hsl(220 13% 9%), hsl(240 3.7% 15.9%));
-    --gradient-neon: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(262 83% 58%) 50%, hsl(346 77% 49%) 100%);
+    /* Ultra-Advanced Cyberpunk Design Tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(271 81% 56%) 0%, hsl(192 96% 54%) 50%, hsl(312 84% 59%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(15 4% 15%) 0%, hsl(6 7% 6%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(192 96% 54%) 0%, hsl(165 84% 50%) 100%);
+    --gradient-dark: linear-gradient(135deg, hsl(5 6% 4%) 0%, hsl(15 4% 15%) 100%);
+    --gradient-neon: linear-gradient(135deg, hsl(271 81% 56%) 0%, hsl(192 96% 54%) 25%, hsl(312 84% 59%) 50%, hsl(165 84% 50%) 75%, hsl(45 100% 70%) 100%);
+    --gradient-cyber: linear-gradient(45deg, hsl(271 81% 56% / 0.1) 0%, hsl(192 96% 54% / 0.1) 50%, hsl(312 84% 59% / 0.1) 100%);
     
-    --shadow-neon: 0 0 20px hsl(142 76% 36% / 0.5), 0 0 40px hsl(142 76% 36% / 0.3);
-    --shadow-elegant: 0 25px 50px -12px hsl(142 76% 36% / 0.25);
-    --shadow-glow: 0 0 60px hsl(144 61% 56% / 0.4), inset 0 1px 0 hsl(142 76% 36% / 0.1);
-    --shadow-card: 0 8px 32px -8px hsl(220 13% 9% / 0.4);
+    /* Advanced Shadow System */
+    --shadow-neon: 0 0 30px hsl(271 81% 56% / 0.6), 0 0 60px hsl(271 81% 56% / 0.4), 0 0 90px hsl(271 81% 56% / 0.2);
+    --shadow-accent: 0 0 30px hsl(192 96% 54% / 0.6), 0 0 60px hsl(192 96% 54% / 0.4);
+    --shadow-elegant: 0 25px 50px -12px hsl(5 6% 4% / 0.6), 0 0 30px hsl(271 81% 56% / 0.3);
+    --shadow-glow: 0 0 80px hsl(271 81% 56% / 0.5), inset 0 1px 0 hsl(271 81% 56% / 0.2);
+    --shadow-card: 0 8px 32px -8px hsl(5 6% 4% / 0.8), 0 0 20px hsl(271 81% 56% / 0.1);
+    --shadow-intense: 0 0 50px hsl(192 96% 54% / 0.7), 0 0 100px hsl(271 81% 56% / 0.5), 0 0 150px hsl(312 84% 59% / 0.3);
     
+    /* Advanced Transition System */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     --transition-glow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-cyber: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     --radius: 0.5rem;
 
@@ -72,33 +78,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 5 6% 4%;
+    --foreground: 210 20% 98%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 6 7% 6%;
+    --card-foreground: 210 20% 98%;
 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 6 7% 6%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: 144 61% 56%;
-    --primary-foreground: 240 10% 3.9%;
+    --primary: 271 81% 56%;
+    --primary-foreground: 210 20% 98%;
 
-    --secondary: 220 13% 91%;
-    --secondary-foreground: 240 10% 3.9%;
+    --secondary: 15 4% 15%;
+    --secondary-foreground: 210 20% 98%;
 
-    --muted: 220 13% 91%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 15 4% 15%;
+    --muted-foreground: 215 15% 65%;
 
-    --accent: 346 77% 49%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 192 96% 54%;
+    --accent-foreground: 5 6% 4%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 15 4% 18%;
+    --input: 15 4% 18%;
+    --ring: 271 81% 56%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
