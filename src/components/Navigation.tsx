@@ -20,13 +20,15 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-18">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <Brain className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 bg-gradient-primary rounded-xl shadow-button">
+              <Brain className="h-7 w-7 text-primary-foreground" />
+            </div>
+            <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
               MindRoute
             </span>
           </div>
@@ -37,7 +39,7 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center space-x-1"
+                className="text-muted-foreground hover:text-primary transition-all duration-200 flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-secondary/50 font-medium"
               >
                 <item.icon className="h-4 w-4" />
                 <span>{item.name}</span>
@@ -45,7 +47,7 @@ const Navigation = () => {
             ))}
             <Button 
               variant="default" 
-              className="bg-gradient-primary shadow-elegant"
+              className="ml-4"
               onClick={handleGetStarted}
             >
               Get Started
@@ -58,6 +60,7 @@ const Navigation = () => {
               variant="ghost"
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="rounded-lg"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -67,22 +70,22 @@ const Navigation = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-card border rounded-lg mt-2 shadow-card">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-gradient-card border rounded-xl mt-4 mb-4 shadow-elegant backdrop-blur-sm">
               {navigationItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-muted-foreground hover:text-foreground block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 flex items-center space-x-2"
+                  className="text-muted-foreground hover:text-primary block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 flex items-center space-x-3 hover:bg-secondary/30"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <item.icon className="h-4 w-4" />
+                  <item.icon className="h-5 w-5" />
                   <span>{item.name}</span>
                 </a>
               ))}
-              <div className="px-3 py-2">
+              <div className="px-4 py-3">
                 <Button 
                   variant="default" 
-                  className="w-full bg-gradient-primary"
+                  className="w-full"
                   onClick={handleGetStarted}
                 >
                   Get Started

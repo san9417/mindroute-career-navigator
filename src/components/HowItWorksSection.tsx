@@ -41,16 +41,16 @@ const HowItWorksSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-24 bg-gradient-to-br from-background to-secondary/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
             How
             <span className="bg-gradient-primary bg-clip-text text-transparent"> MindRoute </span>
             Works
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             Our simple 4-step process transforms your resume into actionable career insights 
             using state-of-the-art artificial intelligence.
           </p>
@@ -62,30 +62,30 @@ const HowItWorksSection = () => {
             <div key={index} className="relative">
               {/* Connection Line */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-primary/50 to-transparent z-0">
-                  <ArrowRight className="absolute right-0 top-1/2 transform -translate-y-1/2 h-4 w-4 text-primary" />
+                <div className="hidden lg:block absolute top-20 left-full w-full h-0.5 bg-gradient-to-r from-primary/50 to-transparent z-0">
+                  <ArrowRight className="absolute right-0 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary" />
                 </div>
               )}
 
-              <Card className="relative z-10 text-center hover:shadow-elegant transition-all duration-300 group border-border/50">
-                <CardHeader className="pb-4">
+              <Card className="relative z-10 text-center hover:shadow-hover transition-all duration-500 group border-border/50 bg-gradient-card backdrop-blur-sm transform hover:scale-105">
+                <CardHeader className="pb-6">
                   {/* Step Number */}
-                  <div className="mx-auto mb-4 w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-lg">
+                  <div className="mx-auto mb-6 w-16 h-16 bg-gradient-button rounded-2xl flex items-center justify-center text-primary-foreground font-bold text-xl shadow-button">
                     {step.number}
                   </div>
                   
                   {/* Icon */}
-                  <div className="mx-auto mb-4 p-3 bg-secondary rounded-xl w-fit group-hover:bg-primary/10 transition-colors">
-                    <step.icon className="h-8 w-8 text-primary" />
+                  <div className="mx-auto mb-6 p-4 bg-secondary/50 rounded-2xl w-fit group-hover:bg-primary/10 transition-all duration-300 shadow-card">
+                    <step.icon className="h-10 w-10 text-primary" />
                   </div>
                   
-                  <CardTitle className="text-xl font-semibold mb-2">
+                  <CardTitle className="text-2xl font-bold mb-4">
                     {step.title}
                   </CardTitle>
                 </CardHeader>
                 
                 <CardContent className="pt-0">
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                  <p className="text-muted-foreground mb-8 leading-relaxed text-base">
                     {step.description}
                   </p>
                   
@@ -102,15 +102,15 @@ const HowItWorksSection = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-20">
           <Button 
             size="lg" 
-            className="bg-gradient-primary shadow-elegant text-lg px-8 py-4 h-auto"
+            className="text-lg px-12 py-6 h-auto"
             onClick={handleStartAnalysis}
           >
-            <Upload className="h-5 w-5 mr-2" />
+            <Upload className="h-6 w-6 mr-3" />
             Start Your Career Analysis
-            <ArrowRight className="h-5 w-5 ml-2" />
+            <ArrowRight className="h-6 w-6 ml-3" />
           </Button>
         </div>
       </div>

@@ -18,88 +18,88 @@ const HeroSection = () => {
     }
   };
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero">
+      {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <img 
           src={heroImage} 
           alt="AI Career Guidance Background" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover opacity-20"
         />
-        <div className="absolute inset-0 bg-gradient-hero opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90"></div>
+      </div>
+
+      {/* Floating Decorative Elements */}
+      <div className="absolute inset-0 z-5 pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-primary opacity-10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-accent opacity-10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-button opacity-5 rounded-full blur-3xl"></div>
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center space-x-2 bg-background/10 backdrop-blur-md border border-primary/20 rounded-full px-6 py-2 mb-8">
-            <Sparkles className="h-4 w-4 text-primary-foreground" />
-            <span className="text-primary-foreground text-sm font-medium">
+          <div className="inline-flex items-center space-x-2 bg-gradient-card backdrop-blur-sm border-2 border-primary/20 rounded-full px-8 py-3 mb-8 shadow-elegant">
+            <Sparkles className="h-5 w-5 text-primary" />
+            <span className="text-primary font-semibold">
               AI-Powered Career Intelligence
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
             Navigate Your
-            <span className="block bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
+            <span className="block bg-gradient-primary bg-clip-text text-transparent drop-shadow-sm">
               Dream Career
             </span>
-            with AI
+            <span className="text-4xl md:text-5xl lg:text-6xl text-muted-foreground font-light">with AI</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
             Upload your resume and let our advanced AI analyze your profile, predict optimal career paths, 
             and provide personalized recommendations to accelerate your professional journey.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
             <Button 
               size="lg" 
-              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-glow text-lg px-8 py-4 h-auto"
+              className="text-lg px-10 py-6 h-auto"
               onClick={handleUploadResume}
             >
-              <Upload className="h-5 w-5 mr-2" />
+              <Upload className="h-6 w-6 mr-3" />
               Upload Resume Now
-              <ArrowRight className="h-5 w-5 ml-2" />
+              <ArrowRight className="h-6 w-6 ml-3" />
             </Button>
             <Button 
               variant="outline" 
               size="lg"
-              className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 text-lg px-8 py-4 h-auto"
+              className="text-lg px-10 py-6 h-auto"
               onClick={handleExploreFeatures}
             >
-              <Target className="h-5 w-5 mr-2" />
+              <Target className="h-6 w-6 mr-3" />
               Explore Features
             </Button>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-2">10,000+</div>
-              <div className="text-primary-foreground/80">Resumes Analyzed</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
+            <div className="text-center p-6 bg-gradient-card rounded-2xl shadow-card border border-border/50 hover:shadow-hover transition-all duration-300 transform hover:scale-105">
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-3">10,000+</div>
+              <div className="text-muted-foreground font-medium">Resumes Analyzed</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-2">95%</div>
-              <div className="text-primary-foreground/80">Accuracy Rate</div>
+            <div className="text-center p-6 bg-gradient-card rounded-2xl shadow-card border border-border/50 hover:shadow-hover transition-all duration-300 transform hover:scale-105">
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-accent bg-clip-text text-transparent mb-3">95%</div>
+              <div className="text-muted-foreground font-medium">Accuracy Rate</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-2">50+</div>
-              <div className="text-primary-foreground/80">Career Domains</div>
+            <div className="text-center p-6 bg-gradient-card rounded-2xl shadow-card border border-border/50 hover:shadow-hover transition-all duration-300 transform hover:scale-105">
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-button bg-clip-text text-transparent mb-3">50+</div>
+              <div className="text-muted-foreground font-medium">Career Domains</div>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Floating Elements */}
-      <div className="absolute inset-0 z-5 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary-foreground/30 rounded-full animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-primary-foreground/40 rounded-full animate-pulse delay-1000"></div>
-        <div className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-primary-foreground/20 rounded-full animate-pulse delay-2000"></div>
       </div>
     </section>
   );
