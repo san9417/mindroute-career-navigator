@@ -1,8 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Upload, Brain, Target, Download, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const HowItWorksSection = () => {
+  const navigate = useNavigate();
+
+  const handleStartAnalysis = () => {
+    navigate('/upload');
+  };
   const steps = [
     {
       number: 1,
@@ -100,6 +106,7 @@ const HowItWorksSection = () => {
           <Button 
             size="lg" 
             className="bg-gradient-primary shadow-elegant text-lg px-8 py-4 h-auto"
+            onClick={handleStartAnalysis}
           >
             <Upload className="h-5 w-5 mr-2" />
             Start Your Career Analysis

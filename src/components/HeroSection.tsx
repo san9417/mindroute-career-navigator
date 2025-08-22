@@ -1,8 +1,22 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Upload, Sparkles, Target } from 'lucide-react';
 import heroImage from '@/assets/hero-bg.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
+  const handleUploadResume = () => {
+    navigate('/upload');
+  };
+
+  const handleExploreFeatures = () => {
+    // Scroll to features section
+    const featuresSection = document.querySelector('#features');
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
@@ -46,6 +60,7 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-glow text-lg px-8 py-4 h-auto"
+              onClick={handleUploadResume}
             >
               <Upload className="h-5 w-5 mr-2" />
               Upload Resume Now
@@ -55,6 +70,7 @@ const HeroSection = () => {
               variant="outline" 
               size="lg"
               className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 text-lg px-8 py-4 h-auto"
+              onClick={handleExploreFeatures}
             >
               <Target className="h-5 w-5 mr-2" />
               Explore Features

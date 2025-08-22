@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Brain, Upload, MessageSquare, FileText, Info } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navigationItems = [
     { name: 'Home', href: '/', icon: Brain },
@@ -12,6 +14,10 @@ const Navigation = () => {
     { name: 'AI Chat', href: '/chat', icon: MessageSquare },
     { name: 'About', href: '/about', icon: Info },
   ];
+
+  const handleGetStarted = () => {
+    navigate('/upload');
+  };
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-border">
@@ -37,7 +43,11 @@ const Navigation = () => {
                 <span>{item.name}</span>
               </a>
             ))}
-            <Button variant="default" className="bg-gradient-primary shadow-elegant">
+            <Button 
+              variant="default" 
+              className="bg-gradient-primary shadow-elegant"
+              onClick={handleGetStarted}
+            >
               Get Started
             </Button>
           </div>
@@ -70,7 +80,11 @@ const Navigation = () => {
                 </a>
               ))}
               <div className="px-3 py-2">
-                <Button variant="default" className="w-full bg-gradient-primary">
+                <Button 
+                  variant="default" 
+                  className="w-full bg-gradient-primary"
+                  onClick={handleGetStarted}
+                >
                   Get Started
                 </Button>
               </div>

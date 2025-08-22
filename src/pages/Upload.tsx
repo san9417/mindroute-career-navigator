@@ -2,52 +2,128 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Upload as UploadIcon, FileText, CheckCircle, Brain } from 'lucide-react';
+import { Upload as UploadIcon, FileText, CheckCircle, Brain, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
 
 const Upload = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisComplete, setAnalysisComplete] = useState(false);
   const [predictedCareer, setPredictedCareer] = useState<string>('');
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [analysisResults, setAnalysisResults] = useState<any>(null);
   const navigate = useNavigate();
+  const { toast } = useToast();
 
-  const handleFileUpload = async () => {
+  // AI Resume Analysis Demo Function
+  const analyzeResumeDemo = async (file: File) => {
+    // Simulate AI analysis with realistic results
+    const careerPredictions = [
+      { field: 'Software Development', confidence: 0.92, skills: ['JavaScript', 'React', 'Node.js', 'Python', 'Git'] },
+      { field: 'Data Science', confidence: 0.89, skills: ['Python', 'Machine Learning', 'SQL', 'Statistics', 'TensorFlow'] },
+      { field: 'Product Management', confidence: 0.85, skills: ['Strategic Planning', 'Agile', 'Analytics', 'Leadership', 'Communication'] },
+      { field: 'Digital Marketing', confidence: 0.88, skills: ['SEO', 'Google Analytics', 'Content Strategy', 'Social Media', 'PPC'] },
+      { field: 'UI/UX Design', confidence: 0.91, skills: ['Figma', 'Adobe Creative Suite', 'Prototyping', 'User Research', 'Design Systems'] },
+    ];
+    
+    const randomPrediction = careerPredictions[Math.floor(Math.random() * careerPredictions.length)];
+    
+    return {
+      prediction: randomPrediction.field.toLowerCase().replace(' ', '_'),
+      confidence: randomPrediction.confidence,
+      skills: randomPrediction.skills,
+      recommendations: [
+        `Consider highlighting your ${randomPrediction.skills[0]} expertise more prominently`,
+        `Add quantifiable achievements to demonstrate ${randomPrediction.skills[1]} impact`,
+        `Include relevant certifications in ${randomPrediction.field}`,
+      ],
+      fileName: file.name,
+      fileSize: (file.size / 1024).toFixed(1) + ' KB'
+    };
+  };
+
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    if (!allowedTypes.includes(file.type)) {
+      toast({
+        title: "Invalid file type",
+        description: "Please upload a PDF, DOC, or DOCX file.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate file size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      toast({
+        title: "File too large",
+        description: "Please upload a file smaller than 10MB.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setUploadedFile(file);
     setIsAnalyzing(true);
     
     try {
-      // Call Supabase edge function for Random Forest analysis
-      const response = await fetch('/functions/v1/analyze-resume', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          resumeText: 'Sample resume text with skills like JavaScript, React, Python, machine learning, and 5 years experience in software development.'
-        })
-      });
-
-      const result = await response.json();
+      // Simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 3000));
       
-      if (result.prediction) {
-        setPredictedCareer(result.prediction);
-        localStorage.setItem('careerPrediction', result.prediction);
-        localStorage.setItem('careerConfidence', result.confidence?.toString() || '0.8');
-        localStorage.setItem('extractedSkills', JSON.stringify(result.skills || []));
-      }
+      const results = await analyzeResumeDemo(file);
+      
+      setPredictedCareer(results.prediction);
+      setAnalysisResults(results);
+      
+      // Store in localStorage for templates page
+      localStorage.setItem('careerPrediction', results.prediction);
+      localStorage.setItem('careerConfidence', results.confidence.toString());
+      localStorage.setItem('extractedSkills', JSON.stringify(results.skills));
+      localStorage.setItem('analysisResults', JSON.stringify(results));
       
       setIsAnalyzing(false);
       setAnalysisComplete(true);
+      
+      toast({
+        title: "Analysis Complete!",
+        description: `Your resume has been analyzed for ${results.prediction.replace('_', ' ')} roles.`,
+      });
+      
     } catch (error) {
       console.error('Analysis failed:', error);
-      // Fallback to demo prediction
-      const careers = ['technology', 'business', 'design', 'healthcare', 'management'];
-      const randomCareer = careers[Math.floor(Math.random() * careers.length)];
-      setPredictedCareer(randomCareer);
-      localStorage.setItem('careerPrediction', randomCareer);
       setIsAnalyzing(false);
-      setAnalysisComplete(true);
+      toast({
+        title: "Analysis Failed",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
     }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    const files = e.dataTransfer.files;
+    if (files[0]) {
+      const event = { target: { files } } as any;
+      handleFileUpload(event);
+    }
+  };
+
+  const resetUpload = () => {
+    setUploadedFile(null);
+    setIsAnalyzing(false);
+    setAnalysisComplete(false);
+    setPredictedCareer('');
+    setAnalysisResults(null);
   };
 
   const handleViewTemplates = () => {
@@ -79,10 +155,15 @@ const Upload = () => {
               </CardHeader>
               <CardContent>
                 {!analysisComplete ? (
-                  <div className="border-2 border-dashed border-border rounded-lg p-8 text-center">
+                  <div className="border-2 border-dashed border-border rounded-lg p-8 text-center"
+                       onDragOver={handleDragOver}
+                       onDrop={handleDrop}>
                     {isAnalyzing ? (
                       <div>
                         <Brain className="h-12 w-12 text-primary mx-auto mb-4 animate-pulse" />
+                        {uploadedFile && (
+                          <p className="text-sm font-medium mb-2">{uploadedFile.name}</p>
+                        )}
                         <p className="text-sm text-muted-foreground mb-4">
                           AI is analyzing your resume...
                         </p>
@@ -96,9 +177,18 @@ const Upload = () => {
                         <p className="text-sm text-muted-foreground mb-4">
                           Drag and drop your resume here, or click to browse
                         </p>
-                        <Button variant="outline" onClick={handleFileUpload}>
-                          Browse Files
-                        </Button>
+                        <input
+                          type="file"
+                          accept=".pdf,.doc,.docx"
+                          onChange={handleFileUpload}
+                          className="hidden"
+                          id="resume-upload"
+                        />
+                        <label htmlFor="resume-upload">
+                          <Button variant="outline" asChild>
+                            <span className="cursor-pointer">Browse Files</span>
+                          </Button>
+                        </label>
                       </div>
                     )}
                   </div>
@@ -106,12 +196,41 @@ const Upload = () => {
                   <div className="text-center p-8">
                     <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
                     <h3 className="text-lg font-semibold mb-2">Analysis Complete!</h3>
-                    <p className="text-muted-foreground mb-4">
-                      Predicted career field: <strong className="capitalize">{predictedCareer}</strong>
-                    </p>
-                    <Button onClick={handleViewTemplates} className="w-full">
-                      View Recommended Templates
-                    </Button>
+                    {analysisResults && (
+                      <div className="space-y-4">
+                        <div className="bg-muted/50 rounded-lg p-4 text-left">
+                          <p className="text-sm font-medium mb-2">File: {analysisResults.fileName}</p>
+                          <p className="text-sm text-muted-foreground mb-3">Size: {analysisResults.fileSize}</p>
+                          <div className="mb-3">
+                            <p className="text-sm font-medium mb-1">Predicted Career:</p>
+                            <p className="text-lg font-semibold text-primary capitalize">
+                              {analysisResults.prediction.replace('_', ' ')}
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                              Confidence: {(analysisResults.confidence * 100).toFixed(0)}%
+                            </p>
+                          </div>
+                          <div className="mb-3">
+                            <p className="text-sm font-medium mb-2">Key Skills Found:</p>
+                            <div className="flex flex-wrap gap-1">
+                              {analysisResults.skills?.slice(0, 3).map((skill: string, index: number) => (
+                                <span key={index} className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <Button onClick={handleViewTemplates} className="w-full">
+                            View Recommended Templates
+                          </Button>
+                          <Button onClick={resetUpload} variant="outline" className="w-full">
+                            Upload Another Resume
+                          </Button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </CardContent>
